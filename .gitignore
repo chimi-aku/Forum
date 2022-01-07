@@ -1,0 +1,7 @@
+/Forum/obj/project.packagespec.json
+/Forum/obj/**
+/Forum/bin/**
+/Forum.sln.DotSettings.user
+/Forum/.DS_Store
+.vs/**
+.idea/**
