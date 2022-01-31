@@ -15,5 +15,7 @@ namespace Forum.Models
 
         public string TextContent { get; set; }
 
+        public virtual LoginViewModel User { get; set; }
+
     }
 }

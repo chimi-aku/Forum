@@ -13,11 +13,11 @@ namespace Forum.Models
 
         public int ReceiverID { get; set; }
 
-        public string content { get; set; }
+        public string Content { get; set; }
 		
-		public virtual User UserFor { get; set; }
+		public virtual LoginViewModel UserAuthor { get; set; }
 		
-		public virtual User UserFrom { get; set; }
+		public virtual LoginViewModel UserReceiver { get; set; }
 
 
     }

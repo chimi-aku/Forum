@@ -14,11 +14,9 @@ namespace Forum.Models
         public int AuthorID { get; set; }
 
         public string TextContent { get; set; }
-         
-        public virtual ICollection<Bookmark> Bookmarks { get; set; }
 		
-		public virtual Thred Thred { get; set; }
+		public virtual Thread Thread { get; set; }
 		
-		public virtual User User { get; set; }
+		public virtual LoginViewModel Author { get; set; }
     }
 }

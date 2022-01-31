@@ -25,6 +25,15 @@ namespace Forum.Models
         {
         }
 
+        public DbSet<Announcement> Announcements { get; set; }
+        public DbSet<Forum> Forums { get; set; }
+        public DbSet<Message> Messages { get; set; }
+        public DbSet<PinPost> PinPosts { get; set; }
+        public DbSet<Post> Posts { get; set; }
+        public DbSet<PinThread> PinThreads { get; set; }
+        public DbSet<Thread> Thread { get; set; }
+
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

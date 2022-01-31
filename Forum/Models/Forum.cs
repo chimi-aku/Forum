@@ -21,7 +21,7 @@ namespace Forum.Models
 
         public virtual ICollection<PinThread> PinThreads { get; set; }
 		
-		public virtual User User { get; set; }
+		public virtual LoginViewModel Author { get; set; }
 
     }
 }

@@ -21,6 +21,10 @@ namespace Forum.Models
 
         public virtual ICollection<PinPost> PinPosts { get; set; }
 
+        public virtual Forum Forum { get; set; }
+
+        public virtual LoginViewModel Author { get; set; }
+
 
     }
 }
