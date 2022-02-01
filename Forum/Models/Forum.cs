@@ -7,7 +7,7 @@ namespace Forum.Models
 {
     public class Forum
     {
-        public string ForumID { get; set; }
+        public int ForumID { get; set; }
 
         public string AuthorID { get; set; }
 
@@ -21,7 +21,7 @@ namespace Forum.Models
 
         public virtual ICollection<PinThread> PinThreads { get; set; }
 		
-		public virtual LoginViewModel Author { get; set; }
+		public virtual ApplicationUser Author { get; set; }
 
     }
 }

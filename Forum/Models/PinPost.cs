@@ -17,6 +17,6 @@ namespace Forum.Models
 
         public virtual Thread Thread { get; set; }
 
-        public virtual LoginViewModel Author { get; set; }
+        public virtual ApplicationUser Author { get; set; }
     }
 } 

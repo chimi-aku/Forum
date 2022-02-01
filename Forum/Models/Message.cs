@@ -15,9 +15,9 @@ namespace Forum.Models
 
         public string Content { get; set; }
 		
-		public virtual LoginViewModel UserAuthor { get; set; }
+		public virtual ApplicationUser UserAuthor { get; set; }
 		
-		public virtual LoginViewModel UserReceiver { get; set; }
+		public virtual ApplicationUser UserReceiver { get; set; }
 
 
     }
