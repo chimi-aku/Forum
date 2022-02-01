@@ -29,7 +29,7 @@ namespace Forum.Controllers
         {
             IdentityManager im = new IdentityManager();
 
-            im.AddUserToRoleByUsername("admin@pb.edu.pl", "Admin");
+            im.AddUserToRoleByUsername("ad@op.pl", "Admin");
 
             return "OK";
         }
