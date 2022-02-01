@@ -11,7 +11,7 @@ namespace Forum.Models
 
         public int ThreadID { get; set; }
 
-        public int AuthorID { get; set; }
+        public string AuthorID { get; set; }
 
         public string TextContent { get; set; }
 		

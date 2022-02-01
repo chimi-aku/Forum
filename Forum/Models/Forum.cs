@@ -7,9 +7,9 @@ namespace Forum.Models
 {
     public class Forum
     {
-        public int ForumID { get; set; }
+        public string ForumID { get; set; }
 
-        public int AuthorID { get; set; }
+        public string AuthorID { get; set; }
 
         public string Name { get; set; }
 

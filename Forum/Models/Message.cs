@@ -9,9 +9,9 @@ namespace Forum.Models
     {
         public int MessageID { get; set; }
 
-        public int AuthorID { get; set; }
+        public string AuthorID { get; set; }
 
-        public int ReceiverID { get; set; }
+        public string ReceiverID { get; set; }
 
         public string Content { get; set; }
 		
