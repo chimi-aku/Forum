@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Forum.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,7 @@ namespace Forum.Controllers
 {
     public class HomeController : Controller
     {
+
         public ActionResult Index()
         {
             return View();
@@ -16,17 +18,18 @@ namespace Forum.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
+           
 
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult Admin()
         {
             string apiUri = Url.HttpRouteUrl("Default", new { controller = "admin", });
@@ -34,5 +37,7 @@ namespace Forum.Controllers
 
             return View();
         }
+
+
     }
 }
