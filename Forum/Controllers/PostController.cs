@@ -24,6 +24,7 @@ namespace Forum.Controllers
 
 
         // GET: Post
+        [Authorize]
         public ActionResult Index(int id, string name)
         {
 
@@ -38,12 +39,14 @@ namespace Forum.Controllers
         }
 
         // GET: Post/Details/5
+        [Authorize]
         public ActionResult Details(int id)
         {
             return View();
         }
 
         // GET: Post/Create
+        [Authorize]
         public ActionResult Create()
         {
 
@@ -53,6 +56,7 @@ namespace Forum.Controllers
 
         // POST: Post/Create
         [HttpPost]
+        [Authorize]
         public ActionResult Create(Post model, int currThreadIDInCreate)
         {
 
@@ -80,6 +84,7 @@ namespace Forum.Controllers
         }
 
         // GET: Post/Edit/5
+        [Authorize]
         public ActionResult Edit(int id)
         {
             return View();
@@ -87,6 +92,7 @@ namespace Forum.Controllers
 
         // POST: Post/Edit/5
         [HttpPost]
+        [Authorize]
         public ActionResult Edit(int id, FormCollection collection)
         {
             try
@@ -102,12 +108,14 @@ namespace Forum.Controllers
         }
 
         // GET: Post/Delete/5
+        [Authorize]
         public ActionResult Delete(int id)
         {
             return View();
         }
 
         // POST: Post/Delete/5
+        [Authorize]
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

@@ -14,17 +14,20 @@ namespace Forum.Controllers
     public class HomeController : Controller
     {
         private readonly ApplicationDbContext db = new ApplicationDbContext();
+        [Authorize]
         public ActionResult Index()
         {
             return View();
         }
 
+        [Authorize]
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
             return View();
         }
 
+        [Authorize]
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
@@ -145,12 +148,14 @@ namespace Forum.Controllers
             return View();
         }
 
+        [Authorize]
         public ActionResult AddToUser()
         {
 
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult AddToUser(String name, String nameR)
         {
@@ -162,11 +167,13 @@ namespace Forum.Controllers
             return View();
         }
 
+        [Authorize]
         public ActionResult AddR()
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult AddR( String name)
         {
@@ -181,13 +188,14 @@ namespace Forum.Controllers
 
 
         // Thread 
+        [Authorize]
         public ActionResult ThreadCreate()
         {
             ThreadSelectList();
             return View();
         }
 
-
+        [Authorize]
         [HttpPost]
         public ActionResult ThreadCreate(Thread model)
         {
