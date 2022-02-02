@@ -3,7 +3,22 @@
     ViewBag.Title = "AddR";
 }
 
-<h2>AddR</h2>
+<head>
+    @Styles.Render("~/Content/AdminPage.css")
+</head>
+<div class="sidebar-container">
+    <ul class="sidebar-navigation">
+        <li>
+            @Html.ActionLink("AdminAnnouncement", "AdminAnnouncement", "Home")
+        </li>
+        <li>
+            @Html.ActionLink("AdminForum", "AdminForum", "Home")
+        </li>
+        <li>
+            @Html.ActionLink("Roles", "RolePage", "Home")
+        </li>
+    </ul>
+</div>
 
 @using (Html.BeginForm("AddR", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
@@ -16,7 +31,7 @@
         <div class="form-group">
             <p>Role name</p>
             <div class="col-md-10">
-                <input class="form-control" id="name" placeholder="Role name" />
+                <input class="form-control" name="name" placeholder="Role name" />
             </div>
         </div>
 

@@ -4,13 +4,28 @@
     ViewBag.Title = "AdminForum";
 }
 
-<h2>AdminForum</h2>
+<head>
+    @Styles.Render("~/Content/AdminPage.css")
+</head>
+<div class="sidebar-container">
+    <ul class="sidebar-navigation">
+        <li>
+            @Html.ActionLink("AdminAnnouncement", "AdminAnnouncement", "Home")
+        </li>
+        <li>
+            @Html.ActionLink("AdminForum", "AdminForum", "Home")
+        </li>
+        <li>
+            @Html.ActionLink("Roles", "RolePage", "Home")
+        </li>
+    </ul>
+</div>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Forum</h4>
         <hr />
@@ -42,14 +57,14 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-info" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "RolePage")
 </div>
 
 @section Scripts {

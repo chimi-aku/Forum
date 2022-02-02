@@ -4,6 +4,7 @@
 }
 @using Forum.Controllers
 <head>
+
     @Styles.Render("~/Content/AdminPage.css")
 </head>
 <div class="sidebar-container">
@@ -21,14 +22,30 @@
 </div>
 
 <div class="content-container">
-
-    <div class="container-fluid">
-
-        <h2>Zarejestrowani :@ViewBag.RegCount</h2>
-        <h2>Wątki : @ViewBag.ThCount</h2>
-        <h2>Wiadomości : @ViewBag.PoCount</h2>
-        <h2>Przypięte Wątki : @ViewBag.PinThCount </h2>
-        <h2>Przypięte wiadomości : @ViewBag.PinPoCount</h2>
-
+    <div class="jumbotron">
+        <div class="container-fluid">
+            <table class="table">
+                <tr>
+                    <th scope="row"></th>
+                    <td><h3>Zarejestrowani :@ViewBag.RegCount</h3></td>
+                </tr>
+                <tr>
+                    <th scope="row"></th>
+                    <td><h3>Wątki : @ViewBag.ThCount</h3></td>
+                </tr>
+                <tr>
+                    <th scope="row"></th>
+                    <td><h3>Wiadomości : @ViewBag.PoCount</h3></td>
+                </tr>
+                <tr>
+                    <th scope="row"></th>
+                    <td><h3>Przypięte Wątki : @ViewBag.PinThCount </h3></td>
+                </tr>
+                <tr>
+                    <th scope="row"></th>
+                    <td><h3>Przypięte wiadomości : @ViewBag.PinPoCount</h3></td>
+                </tr>
+            </table>
+        </div>
     </div>
 </div>

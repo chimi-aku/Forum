@@ -2,26 +2,44 @@
 @{
     ViewBag.Title = "RolePage";
 }
+
 @Styles.Render("~/Content/Role.css")
-<h2>RolePage</h2>
-@Html.ActionLink("Add role", "AddR", "HomeControler", new { @class = "btn btn-primary" })
-@Html.ActionLink("Add user to role", "AddToUser", "HomeControler", new { @class = "btn btn-primary" })
+<head>
+    @Styles.Render("~/Content/AdminPage.css")
+</head>
+<div class="sidebar-container">
+    <ul class="sidebar-navigation">
+        <li>
+            @Html.ActionLink("AdminAnnouncement", "AdminAnnouncement", "Home")
+        </li>
+        <li>
+            @Html.ActionLink("AdminForum", "AdminForum", "Home")
+        </li>
+        <li>
+            @Html.ActionLink("Roles", "RolePage", "Home")
+        </li>
+    </ul>
+</div>
 
-<table class="table">
-    <tr>
-        <th>
-            <p>Rola</p>
-        </th>
-        <th></th>
-    </tr>
+<div style="padding:30px">
+    @Html.ActionLink("Add role", "AddR", "HomeControler", new { @class = "btn btn-info" })
+    @Html.ActionLink("Add user to role", "AddToUser", "HomeControler", new { @class = "btn btn-info" })
 
-    @foreach (var x in ViewBag.list)
-    {
+    <table class="table">
         <tr>
-            <td>
-                @x.Name
-            </td>
-           
+            <th>
+                <p>Rola</p>
+            </th>
+            <th></th>
         </tr>
-    }
-</table>
+
+        @foreach (var x in ViewBag.list)
+        {
+            <tr>
+                <td scope="row">
+                    @x.Name
+                </td>
+            </tr>
+        }
+    </table>
+</div>
