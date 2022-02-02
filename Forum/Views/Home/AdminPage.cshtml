@@ -2,23 +2,20 @@
 @{
     ViewBag.Title = "AdminPage";
 }
+@using Forum.Controllers
 <head>
     @Styles.Render("~/Content/AdminPage.css")
 </head>
 <div class="sidebar-container">
     <ul class="sidebar-navigation">
-        <li class="header">Navigation</li>
         <li>
-            @Html.ActionLink("AdminAnnouncement", "AdminAnnouncement","Home")
+            @Html.ActionLink("AdminAnnouncement", "AdminAnnouncement", "Home")
         </li>
         <li>
             @Html.ActionLink("AdminForum", "AdminForum", "Home")
         </li>
-        <li class="header">Another Menu</li>
         <li>
-            <a href="#">
-                <i class="fa fa-users" aria-hidden="true"></i> Friends
-            </a>
+            @Html.ActionLink("Roles", "RolePage", "Home")
         </li>
     </ul>
 </div>
@@ -32,7 +29,6 @@
         <h2>Wiadomości : @ViewBag.PoCount</h2>
         <h2>Przypięte Wątki : @ViewBag.PinThCount </h2>
         <h2>Przypięte wiadomości : @ViewBag.PinPoCount</h2>
-
 
     </div>
 </div>

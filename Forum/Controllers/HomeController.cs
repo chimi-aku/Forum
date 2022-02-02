@@ -19,10 +19,6 @@ namespace Forum.Controllers
             return View();
         }
 
-
-
-
-
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -46,7 +42,17 @@ namespace Forum.Controllers
             }
         }
 
-        [Authorize(Roles = "Admin")]
+ 
+            public RoleManager<IdentityRole> LocalRoleManager
+            {
+                get
+                {
+                    return new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
+                }
+            }
+        
+
+            [Authorize(Roles = "Admin")]
         public ActionResult AdminPage()
         {
             var RegCount = db.Users.Count();
@@ -64,6 +70,7 @@ namespace Forum.Controllers
             var PinThCount = db.PinThreads.Count();
             ViewBag.PinThCount = PinThCount;
 
+            
             return View();
         }
 
@@ -128,5 +135,49 @@ namespace Forum.Controllers
             var list = db.Forums.ToList();
             return list;
         }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult RolePage()
+        {
+
+            ViewBag.list = new RoleController().AllRoles();
+
+            return View();
+        }
+
+        public ActionResult AddToUser()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddToUser(String name, String nameR)
+        {
+            if (name != null && nameR != null) {
+                var um = LocalUserManager;
+                string user = um.FindByName(name).Id;
+                var idResult = um.AddToRole(user, nameR);
+            }
+            return View();
+        }
+
+        public ActionResult AddR()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddR( String name)
+        {
+            if (name != null)
+            {
+                var rm = LocalRoleManager;
+                var idResult = rm.Create(new IdentityRole(name));
+            }
+            return View();
+        }
+
+
     }
 }

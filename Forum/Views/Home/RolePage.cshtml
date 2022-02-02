@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "RolePage";
+}
+@Styles.Render("~/Content/Role.css")
+<h2>RolePage</h2>
+@Html.ActionLink("Add role", "AddR", "HomeControler", new { @class = "btn btn-primary" })
+@Html.ActionLink("Add user to role", "AddToUser", "HomeControler", new { @class = "btn btn-primary" })
+
+<table class="table">
+    <tr>
+        <th>
+            <p>Rola</p>
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var x in ViewBag.list)
+    {
+        <tr>
+            <td>
+                @x.Name
+            </td>
+           
+        </tr>
+    }
+</table>

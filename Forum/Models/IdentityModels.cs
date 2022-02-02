@@ -123,7 +123,6 @@ namespace Forum.Models
 		public bool AddUserToRoleByUsername(string username, string roleName)
 		{
 			var um = LocalUserManager;
-
 			string userID = um.FindByName(username).Id;
 			var idResult = um.AddToRole(userID, roleName);
 

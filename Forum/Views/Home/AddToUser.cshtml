@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "AddToUser";
+}
+
+<h2>AddToUser</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Company</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <p>Role name</p>
+        <div class="col-md-10">
+            <input class="form-control" id="name" placeholder="Role name" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <p>User name</p>
+        <div class="col-md-10">
+            <input class="form-control" id="nameR" placeholder="Role name" />
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-dark" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "RolePage")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

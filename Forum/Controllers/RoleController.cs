@@ -9,6 +9,8 @@ namespace Forum.Controllers
 {
     public class RoleController : Controller
     {
+
+        private readonly ApplicationDbContext db = new ApplicationDbContext();
         // GET: Role
         public ActionResult Index()
         {
@@ -21,7 +23,6 @@ namespace Forum.Controllers
 
             im.CreateRole("Admin");
             im.CreateRole("User");
-
             return "OK";
         }
 
@@ -33,8 +34,19 @@ namespace Forum.Controllers
 
             return "OK";
         }
+        public List<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>  AllRoles()
+        {
+            IdentityManager im = new IdentityManager();
+            
+            var list = db.Roles.Select(x => x).ToList();
+            
+ 
+
+            return list;
+        }
 
 
 
-    }
+
+        }
 }
