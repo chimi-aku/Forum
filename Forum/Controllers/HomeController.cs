@@ -179,5 +179,49 @@ namespace Forum.Controllers
         }
 
 
+
+        // Thread 
+        public ActionResult ThreadCreate()
+        {
+            ThreadSelectList();
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult ThreadCreate(Thread model)
+        {
+            var um = LocalUserManager;
+
+            string userID = um.FindByName(User.Identity.Name).Id;
+            model.AuthorID = userID;
+            model.Author = db.Users.Find(userID);
+
+
+            ThreadSelectList();
+
+            db.Thread.Add(model);
+            db.SaveChanges();
+
+            return View();
+        }
+
+        private void ThreadSelectList()
+        {
+            List<SelectListItem> forumsIDs = new List<SelectListItem>();
+            List<Models.Forum> forums = db.Set<Models.Forum>().ToList();
+
+            foreach (var f in forums)
+            {
+                SelectListItem tmp = new SelectListItem() { Text = f.Name, Value = f.ForumID.ToString() };
+                forumsIDs.Add(tmp);
+            }
+
+            forumsIDs.FirstOrDefault().Selected = true;
+
+            ViewBag.ForumID = forumsIDs;
+        }
+
+
     }
 }

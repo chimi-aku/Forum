@@ -37,6 +37,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
+            <td>
+                @*@Html.ActionLink("Open", "Index", "Thread", new { ForumID = item.ForumID });*@
+                @Html.ActionLink("Open", "Index", "Thread", new { ID = item.ForumID }, null)
+            </td>
         </tr>
         }
 
