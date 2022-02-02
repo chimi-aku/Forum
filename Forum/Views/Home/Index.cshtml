@@ -5,16 +5,21 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <table>
+<div style="padding:10px">
+    <table style="width:100%">
         @foreach (var item in ((HomeController)this.ViewContext.Controller).Announcements())
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TextContent)
+                <td  style="padding-bottom:10px;">
+                    <div style="background-color:lightblue; border-radius:10px; width:100%; padding:15px">
+                        <div>
+                            <h3 style="margin-top:5px">@Html.DisplayFor(modelItem => item.Name)</h3>
+                        </div>
+                        <div style="margin-left:15px">
+                            @Html.DisplayFor(modelItem => item.TextContent)
+                        </div>
+                    </div>
+
                 </td>
             </tr>
         }
@@ -22,27 +27,23 @@
     </table>
 </div>
 
-<div class="row">
-
-    <table>
+    <h4>@Html.ActionLink(" + New thread", "ThreadCreate", "Home", new { @class = "btn btn-info" })</h4>
+    <table class="table table-striped" style="width:100%">
         @foreach (var item in ((HomeController)this.ViewContext.Controller).Forums())
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.ActionLink("Open", "Index", "Thread", new { ID = item.ForumID }, null)
-            </td>
-        </tr>
+            <tr style="width:100%; border:1px solid lightgray;">
+                <td style="width:100%">
+                    <div>
+                        <h3 style="margin-right:10px; margin-top:0px">@Html.ActionLink(item.Name, "Index", "Thread", new { ID = item.ForumID }, null)</h3>
+                        <h4 style="margin-left:10px">@Html.DisplayFor(modelItem => item.Category)</h4>
+
+                        <div style="border-top:1px solid lightgray; margin-left:10px">
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </div>
+                    </div>
+                </td>
+
+            </tr>
         }
 
     </table>
-
-</div>
