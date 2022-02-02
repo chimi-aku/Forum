@@ -15,6 +15,11 @@ namespace Forum.Controllers
         public ActionResult Index(int ID)
         {
             List<Thread> threads = db.Thread.Where(t => t.ForumID == ID).ToList();
+            
+            if(threads.Count > 0)
+            {
+                ViewBag.threadID = threads.First().ThreadID;
+            }
 
             return View(threads);
         }

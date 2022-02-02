@@ -8,7 +8,7 @@
 
 <p>
     @Html.ActionLink("Create New", "Create")
-</p>
+</p>s
 <table class="table">
     <tr>
         <th>
@@ -41,9 +41,25 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ThreadID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ThreadID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ThreadID })
+            @if (User.IsInRole("Admin"))
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.ThreadID })
+            }
+            @if (User.IsInRole("Admin"))
+            {
+                @Html.ActionLink("Details", "Details", new { id = item.ThreadID})
+            }
+            @if (User.IsInRole("Admin"))
+            {
+                @Html.ActionLink("Delete", "Delete", new { id = item.ThreadID, name = item.Name })
+            }
+
+
+
+
+
+            @Html.ActionLink("Open", "Index", "Post", new { id = item.ThreadID }, null)
+
         </td>
     </tr>
 }

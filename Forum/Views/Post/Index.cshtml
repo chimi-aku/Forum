@@ -1,0 +1,50 @@
+﻿@model Forum.Controllers.PostController
+
+@{
+    ViewBag.Title = "Index";
+    
+}
+
+<h2>Index</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.threadName)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @if (Model.posts.Count > 0)
+    {
+        foreach (var item in Model.posts)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Thread.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TextContent)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PostID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.PostID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.PostID })
+                </td>
+            </tr>
+
+        }
+    }
+
+
+    <tr>
+       @Html.ActionLink("Create New", "Create", new { currThreadIDInCreate = Model.currThreadID })
+    </tr>
+
+
+</table>
