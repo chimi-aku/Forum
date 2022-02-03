@@ -1,4 +1,6 @@
 ﻿using Forum.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,19 +38,33 @@ namespace Forum.Controllers
         [Authorize]
         public ActionResult Create()
         {
+            ThreadSelectList();
             return View();
         }
 
         // POST: Thread/Create
         [Authorize]
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Thread model)
         {
             try
             {
-                // TODO: Add insert logic here
+                var um = LocalUserManager;
 
-                return RedirectToAction("Index");
+                string userID = um.FindByName(User.Identity.Name).Id;
+                model.AuthorID = userID;
+                model.Author = db.Users.Find(userID);
+
+
+                ThreadSelectList();
+
+                db.Thread.Add(model);
+                db.SaveChanges();
+
+
+                string link = "index/" + model.ForumID.ToString();
+
+                return RedirectToAction(link, "Thread");
             }
             catch
             {
@@ -66,13 +82,15 @@ namespace Forum.Controllers
         // POST: Thread/Edit/5
         [Authorize]
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, FormCollection collectiomn, Thread model)
         {
             try
             {
                 // TODO: Add update logic here
 
-                return RedirectToAction("Index");
+                string link = "index/" + model.ForumID.ToString();
+
+                return RedirectToAction(link, "Thread");
             }
             catch
             {
@@ -95,13 +113,42 @@ namespace Forum.Controllers
             try
             {
                 // TODO: Add delete logic here
+                var threadToDelete = db.Thread.Where(t => t.ThreadID == id).ToList();
+                db.Thread.Remove(threadToDelete.First());
+                db.SaveChanges();
 
-                return RedirectToAction("Index");
+                string link = "index/" + id.ToString();
+
+                return RedirectToAction(link, "Thread");
             }
             catch
             {
                 return View();
             }
+        }
+
+        public UserManager<ApplicationUser> LocalUserManager
+        {
+            get
+            {
+                return new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            }
+        }
+
+        private void ThreadSelectList()
+        {
+            List<SelectListItem> forumsIDs = new List<SelectListItem>();
+            List<Models.Forum> forums = db.Set<Models.Forum>().ToList();
+
+            foreach (var f in forums)
+            {
+                SelectListItem tmp = new SelectListItem() { Text = f.Name, Value = f.ForumID.ToString() };
+                forumsIDs.Add(tmp);
+            }
+
+            forumsIDs.FirstOrDefault().Selected = true;
+
+            ViewBag.ForumID = forumsIDs;
         }
     }
 }
