@@ -14,7 +14,7 @@ namespace Forum.Controllers
     public class HomeController : Controller
     {
         private readonly ApplicationDbContext db = new ApplicationDbContext();
-        [Authorize]
+
         public ActionResult Index()
         {
             return View();
@@ -195,7 +195,7 @@ namespace Forum.Controllers
             return View();
         }
 
-        [Authorize]
+      
         [HttpPost]
         public ActionResult ThreadCreate(Thread model)
         {

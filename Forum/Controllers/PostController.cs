@@ -74,8 +74,8 @@ namespace Forum.Controllers
                 db.Posts.Add(model);
                 db.SaveChanges();
 
-                string theadListAction = "index/" + currThreadIDInCreate;
-                return RedirectToAction(theadListAction, "Thread");
+                string theadListAction = "index/" + currThreadIDInCreate.ToString();
+                return RedirectToAction(theadListAction, "Post");
             }
             catch
             {
