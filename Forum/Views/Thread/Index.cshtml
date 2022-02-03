@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Forum.Models.Thread>
+﻿@model Forum.Controllers.ThreadController
 
 @{
     ViewBag.Title = "Index";
@@ -6,33 +6,70 @@
 
 <table class="table table-striped" style="width:100%">
 
-    @foreach (var item in Model)
+    @if (Model.pinnedThread.Count > 0)
     {
-        <tr style="width:100%; border:1px solid lightgray;">
-            <td style="width:100%">
-                <div>
-                    <h3 style="margin-right:10px; margin-top:0px">@Html.ActionLink(item.Name, "Index", "Post", new { id = item.ThreadID }, null)</h3>
-                    <h4 style="margin-left:10px"> @Html.DisplayFor(modelItem => item.Author.Email)</h4>
+        foreach (var item in Model.pinnedThread)
+        {
+            <tr style="width:100%; border:1px solid lightgray;">
+                <td style="width:100%">
+                    <div>
+                        <h3 style="margin-right:10px; margin-top:0px">@Html.ActionLink(item.Name, "Index", "Post", new { id = item.ThreadID }, null)</h3>
+                        <h4 style="margin-left:10px"> @Html.DisplayFor(modelItem => item.Author.Email)</h4>
 
-                    <div style="border-top:1px solid lightgray; margin-left:10px">
-                        @Html.DisplayFor(modelItem => item.Description)
+                        <div style="border-top:1px solid lightgray; margin-left:10px">
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </div>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ThreadID })
+                        }
+                        @if (User.IsInRole("Admin"))
+                        {
+                            @Html.ActionLink("Details", "Details", new { id = item.ThreadID })
+                        }
+                        @if (User.IsInRole("Admin"))
+                        {
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ThreadID, name = item.Name })
+                        }
                     </div>
-                    @if (User.IsInRole("Admin"))
-                    {
-                        @Html.ActionLink("Edit", "Edit", new { id = item.ThreadID })
-                    }
-                    @if (User.IsInRole("Admin"))
-                    {
-                        @Html.ActionLink("Details", "Details", new { id = item.ThreadID })
-                    }
-                    @if (User.IsInRole("Admin"))
-                    {
-                        @Html.ActionLink("Delete", "Delete", new { id = item.ThreadID, name = item.Name })
-                    }
-                </div>
-            </td>
+                </td>
 
-        </tr>
+            </tr>
+        }
     }
+    </table>
 
+<table class="table table-striped" style="width:100%">
+
+    @if (Model.notPinnedThread.Count > 0)
+    {
+        foreach (var item in Model.notPinnedThread)
+        {
+            <tr style="width:100%; border:1px solid lightgray;">
+                <td style="width:100%">
+                    <div>
+                        <h3 style="margin-right:10px; margin-top:0px">@Html.ActionLink(item.Name, "Index", "Post", new { id = item.ThreadID }, null)</h3>
+                        <h4 style="margin-left:10px"> @Html.DisplayFor(modelItem => item.Author.Email)</h4>
+
+                        <div style="border-top:1px solid lightgray; margin-left:10px">
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </div>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ThreadID })
+                        }
+                        @if (User.IsInRole("Admin"))
+                        {
+                            @Html.ActionLink("Details", "Details", new { id = item.ThreadID })
+                        }
+                        @if (User.IsInRole("Admin"))
+                        {
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ThreadID, name = item.Name })
+                        }
+                    </div>
+                </td>
+
+            </tr>
+        }
+    }
 </table>

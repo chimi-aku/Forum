@@ -13,18 +13,26 @@ namespace Forum.Controllers
     {
         private readonly ApplicationDbContext db = new ApplicationDbContext();
 
+        public List<Thread> pinnedThread { get; set; }
+
+        public List<Thread> notPinnedThread { get; set; }
+
         // GET: Thread
         [Authorize]
         public ActionResult Index(int ID)
         {
-            List<Thread> threads = db.Thread.Where(t => t.ForumID == ID).ToList();
-            
-            if(threads.Count > 0)
+            pinnedThread = db.Thread.Where(t => t.ForumID == ID && t.pinned == true).ToList();
+
+            notPinnedThread = db.Thread.Where(t => t.ForumID == ID && t.pinned == false).ToList();
+
+  
+
+            if (notPinnedThread.Count > 0)
             {
-                ViewBag.threadID = threads.First().ThreadID;
+                ViewBag.threadID = notPinnedThread.First().ThreadID;
             }
 
-            return View(threads);
+            return View(this);
         }
 
         // GET: Thread/Details/5

@@ -211,7 +211,10 @@ namespace Forum.Controllers
             db.Thread.Add(model);
             db.SaveChanges();
 
-            return View();
+            string link = "index/" + model.ForumID.ToString();
+
+            return RedirectToAction(link, "Thread");
+            //return View();
         }
 
         private void ThreadSelectList()

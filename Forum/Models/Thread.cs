@@ -17,6 +17,8 @@ namespace Forum.Models
 
         public string Description { get; set; }
 
+        public bool pinned { get; set; }
+
         public virtual ICollection<Post>  Posts { get; set; }
 
         public virtual ICollection<PinPost> PinPosts { get; set; }
