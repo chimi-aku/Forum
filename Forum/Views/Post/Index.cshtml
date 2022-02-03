@@ -2,49 +2,38 @@
 
 @{
     ViewBag.Title = "Index";
-    
+
 }
 
 <h2>Index</h2>
 
+@Html.ActionLink("Create New", "Create", new { currThreadIDInCreate = Model.currThreadID }, new { @class = "btn btn-info" })
+<div style="border-radius:10px; padding:5px;margin-top:10px;border:2px outset lightgray">
+    <ul class="list-group">
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.threadName)
-        </th>
-
-        <th></th>
-    </tr>
-
-    @if (Model.posts.Count > 0)
-    {
-        foreach (var item in Model.posts)
+        @if (Model.posts.Count > 0)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Thread.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Author.UserName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TextContent)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.PostID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.PostID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.PostID })
-                </td>
-            </tr>
+            foreach (var item in Model.posts)
+            {
 
+
+        <li class="list-group-item" hidden;">
+            <div>
+                @Html.DisplayFor(modelItem => item.Author.UserName)
+            </div>
+            <div style="margin-right:0px;float:right;">
+                @if (User.IsInRole("Admin"))
+                {@Html.ActionLink("Edit |", "Edit", new { id = item.PostID })}
+                @if (User.IsInRole("Admin"))
+                {@Html.ActionLink("Delete", "Delete", new { id = item.PostID })}
+            </div>
+            <div style="clear: both; border-top:2px dotted lightgray">
+                @Html.DisplayFor(modelItem => item.TextContent)
+            </div>
+           
+
+        </li>
+            }
         }
-    }
-
-
-    <tr>
-       @Html.ActionLink("Create New", "Create", new { currThreadIDInCreate = Model.currThreadID })
-    </tr>
-
-
-</table>
+        </ul>
+</div>

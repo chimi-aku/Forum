@@ -5,8 +5,9 @@
     ViewBag.Title = "Home Page";
 }
 
-<div style="padding:10px">
-    <table style="width:100%">
+<div style="padding:10px;">
+    <table style="width: 100%; padding-top:10px;
+">
         @foreach (var item in ((HomeController)this.ViewContext.Controller).Announcements())
         {
             <tr>

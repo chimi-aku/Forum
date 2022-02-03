@@ -11,7 +11,8 @@
         foreach (var item in Model.pinnedThread)
         {
             <tr style="width:100%; border:1px solid lightgray;">
-                <td style="width:100%">
+                <td style="width:100%; padding-top:10px; margin-top:10px;
+">
                     <div>
                         <h3 style="margin-right:10px; margin-top:0px">@Html.ActionLink(item.Name, "Index", "Post", new { id = item.ThreadID }, null)</h3>
                         <h4 style="margin-left:10px"> @Html.DisplayFor(modelItem => item.Author.Email)</h4>
