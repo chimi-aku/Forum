@@ -4,64 +4,35 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<table class="table table-striped" style="width:100%">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ForumID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AuthorID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th></th>
-    </tr>
+    @foreach (var item in Model)
+    {
+        <tr style="width:100%; border:1px solid lightgray;">
+            <td style="width:100%">
+                <div>
+                    <h3 style="margin-right:10px; margin-top:0px">@Html.ActionLink(item.Name, "Index", "Post", new { id = item.ThreadID }, null)</h3>
+                    <h4 style="margin-left:10px"> @Html.DisplayFor(modelItem => item.Author.Email)</h4>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ForumID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AuthorID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @if (User.IsInRole("Admin"))
-            {
-                @Html.ActionLink("Edit", "Edit", new { id = item.ThreadID })
-            }
-            @if (User.IsInRole("Admin"))
-            {
-                @Html.ActionLink("Details", "Details", new { id = item.ThreadID})
-            }
-            @if (User.IsInRole("Admin"))
-            {
-                @Html.ActionLink("Delete", "Delete", new { id = item.ThreadID, name = item.Name })
-            }
+                    <div style="border-top:1px solid lightgray; margin-left:10px">
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </div>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ThreadID })
+                    }
+                    @if (User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink("Details", "Details", new { id = item.ThreadID })
+                    }
+                    @if (User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ThreadID, name = item.Name })
+                    }
+                </div>
+            </td>
 
-
-
-
-
-            @Html.ActionLink("Open", "Index", "Post", new { id = item.ThreadID }, null)
-
-        </td>
-    </tr>
-}
+        </tr>
+    }
 
 </table>
